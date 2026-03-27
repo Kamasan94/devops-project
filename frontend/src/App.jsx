@@ -8,7 +8,7 @@ function App() {
 
   const checkApi = async () => {
     try {
-      const res = await fetch(`${API_URL}/api/health`);
+      const res = await fetch(`/api/health`);
       const data = await res.json();
       setStatus(data.status);
     } catch (err) {
