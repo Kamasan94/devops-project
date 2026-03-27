@@ -12,8 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build backend image
-        run: docker build -t backend ./backend
+      - name: Login Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Build frontend image
-        run: docker build -t frontend ./frontend
+      - name: Build backend
+        run: docker build -t  "${{ secrets.DOCKER_USERNAME }}"/devops-backend ./backend
+
+      - name: Push backend
+        run: docker push "${{ secrets.DOCKER_USERNAME }}"/devops-backend
+
+      - name: Build frontend
+        run: docker build -t "${{ secrets.DOCKER_USERNAME }}"/devops-frontend ./frontend
+
+      - name: Push frontend
+        run: docker push "${{ secrets.DOCKER_USERNAME }}"/devops-frontend
