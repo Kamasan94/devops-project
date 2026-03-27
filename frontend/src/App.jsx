@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div style={{ padding: 20 }}>
-      <h1>DevOps Test App</h1>
+      <h1>DevOps Test App - Push the button</h1>
       <button onClick={checkApi}>Check API</button>
       {status && <p>API status: {status}</p>}
     </div>
